@@ -40,11 +40,14 @@ BASE_APPS = [
 ]
 LOCAL_APPS = [
     'apps.user',
+    'apps.tasks',
 
 ]
 THIRD_APPS = [
     'rest_framework',
     'simple_history',
+    'rest_framework_simplejwt',
+
 ]
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
 
@@ -60,6 +63,19 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Task_manager.urls'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',  # Permitir acceso a todos los usuarios
+    ),
+}
+
+
+
+
 
 TEMPLATES = [
     {

@@ -44,3 +44,18 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return f'{self.name} {self.last_name}'
+
+class Task(models.Model):
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    title = models.CharField('Título', max_length = 255)
+    description = models.TextField('Descripción')
+    created_at = models.DateTimeField('Fecha de creación', auto_now_add = True)
+    updated_at = models.DateTimeField('Fecha de actualización', auto_now = True)
+    historical = HistoricalRecords()
+
+    class Meta:
+        verbose_name = 'Tarea'
+        verbose_name_plural = 'Tareas'
+
+    def __str__(self):
+        return self.title
